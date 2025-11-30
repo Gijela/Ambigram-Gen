@@ -9,6 +9,7 @@ import { CustomizationPanel } from './CustomizationPanel';
 import { DownloadPanel } from './DownloadPanel';
 import { HistoryPanel } from './HistoryPanel';
 import { PerformanceMonitor } from '../Debug/PerformanceMonitor';
+import { AIGeneratorModal } from './AIGeneratorModal';
 import { motion } from 'framer-motion';
 
 export const MainGenerator = () => {
@@ -25,6 +26,7 @@ export const MainGenerator = () => {
   } = useAmbigramStore();
 
   const [showHistory, setShowHistory] = useState(false);
+  const [showAIModal, setShowAIModal] = useState(false);
 
   const handleGenerate = async () => {
     // 检查至少有一个输入框有内容
@@ -32,6 +34,10 @@ export const MainGenerator = () => {
       return;
     }
     await generateAmbigram();
+  };
+
+  const handleOpenAIModal = () => {
+    setShowAIModal(true);
   };
 
   return (
@@ -67,39 +73,63 @@ export const MainGenerator = () => {
               </h3>
               <InputForm />
               
-              {/* Generate Button */}
-              <motion.button
-                whileHover={{ scale: isGenerating ? 1 : 1.02 }}
-                whileTap={{ scale: isGenerating ? 1 : 0.98 }}
-                onClick={handleGenerate}
-                disabled={isGenerating || !inputText.trim()}
-                className={`w-full mt-4 py-3 px-6 font-semibold rounded-xl transition-all duration-300 ${
-                  isGenerating
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 cursor-wait'
-                    : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
-                } ${
-                  !inputText.trim() && !isGenerating
-                    ? 'opacity-50 cursor-not-allowed'
-                    : 'text-white'
-                }`}
-              >
-                {isGenerating ? (
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="relative">
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      <div className="absolute inset-0 w-5 h-5 border-2 border-transparent border-r-white/60 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }}></div>
+              {/* Generate Buttons */}
+              <div className="flex gap-3 mt-4">
+                {/* 免费生成按钮 */}
+                <motion.button
+                  whileHover={{ scale: isGenerating ? 1 : 1.02 }}
+                  whileTap={{ scale: isGenerating ? 1 : 0.98 }}
+                  onClick={handleGenerate}
+                  disabled={isGenerating || !inputText.trim()}
+                  className={`flex-1 py-3 px-6 font-semibold rounded-xl transition-all duration-300 ${
+                    isGenerating
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 cursor-wait'
+                      : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
+                  } ${
+                    !inputText.trim() && !isGenerating
+                      ? 'opacity-50 cursor-not-allowed'
+                      : 'text-white'
+                  }`}
+                >
+                  {isGenerating ? (
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="relative">
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        <div className="absolute inset-0 w-5 h-5 border-2 border-transparent border-r-white/60 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }}></div>
+                      </div>
+                      <span className="animate-pulse">Generating...</span>
                     </div>
-                    <span className="animate-pulse">Generating Ambigram...</span>
+                  ) : (
+                    <div className="flex items-center justify-center space-x-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span>Generate</span>
+                    </div>
+                  )}
+                </motion.button>
+
+                {/* AI 生成按钮 */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleOpenAIModal}
+                  disabled={!inputText.trim()}
+                  className={`flex-1 py-3 px-6 font-semibold rounded-xl transition-all duration-300
+                    bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600
+                    ${!inputText.trim() ? 'opacity-50 cursor-not-allowed' : 'text-white'}
+                    relative overflow-hidden group`}
+                >
+                  {/* 闪光效果 */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                                  translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                  <div className="flex items-center justify-center space-x-2 relative z-10">
+                    <span className="text-lg">✨</span>
+                    <span>AI Generate</span>
+                    <span className="text-xs bg-white/20 px-1.5 py-0.5 rounded-full">Pro</span>
                   </div>
-                ) : (
-                  <div className="flex items-center justify-center space-x-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    <span>Generate Ambigram</span>
-                  </div>
-                )}
-              </motion.button>
+                </motion.button>
+              </div>
 
               {/* Generation Status Prompt */}
               {isGenerating && (
@@ -249,6 +279,14 @@ export const MainGenerator = () => {
       
       {/* 性能监控组件 */}
       <PerformanceMonitor />
+
+      {/* AI 生成弹窗 */}
+      <AIGeneratorModal
+        isOpen={showAIModal}
+        onClose={() => setShowAIModal(false)}
+        initialText={inputText}
+        initialText2={inputText2}
+      />
     </section>
   );
 };
