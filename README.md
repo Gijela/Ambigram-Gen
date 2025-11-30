@@ -48,6 +48,23 @@ This project is built with modern web technologies:
 - [Tailwind CSS](https://tailwindcss.com/) – CSS framework  
 - [Framer Motion](https://www.framer.com/motion/) – Animation library  
 - [Zustand](https://zustand-demo.pmnd.rs/) – State management  
+- [Stripe](https://stripe.com/) – Payment processing  
+
+## ⚙️ Environment Variables  
+
+Create a `.env.local` file in the root directory with the following variables:  
+
+```bash
+# AI Image Generation API
+NANO_BANANA_API_KEY=your_api_key_here
+
+# Stripe Payment (Get from https://dashboard.stripe.com/apikeys)
+STRIPE_SECRET_KEY=sk_test_xxx
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_xxx
+
+# Base URL (change in production)
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```  
 
 ## 🤝 Contributions Welcome  
 

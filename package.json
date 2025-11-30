@@ -22,6 +22,7 @@
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.4",
+    "stripe": "^20.0.0",
     "tailwindcss-animate": "^1.0.7",
     "zustand": "^4.4.7"
   },
