@@ -11,13 +11,18 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-04-30.basil',
+  apiVersion: '2025-11-17.clover',
   typescript: true,
 });
 
-export const STRIPE_CONFIG = {
-  priceId: process.env.STRIPE_PRICE_ID || '',
-  currency: 'usd',
-  amount: 200, // $2.00 in cents
-};
+/* ════════════════════════════════════════════════════════════════════════════
+ *  Pricing Configuration
+ *  ────────────────────
+ *  amount: 价格，单位为 cents（美分）
+ *          100 = $1.00 | 200 = $2.00 | 500 = $5.00
+ * ════════════════════════════════════════════════════════════════════════════ */
 
+export const STRIPE_CONFIG = {
+  currency: 'usd',
+  amount: parseInt(process.env.AI_GENERATION_PRICE_CENTS || '200', 10),
+};

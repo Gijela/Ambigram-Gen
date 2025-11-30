@@ -235,7 +235,7 @@ export const AIGeneratorModal = ({
               </svg>
               <span>Secure payment via Stripe</span>
             </div>
-            <span>~10-30 seconds</span>
+            {/* <span>~10-30 seconds</span> */}
           </div>
 
           {/* Checkout Button */}
@@ -260,7 +260,7 @@ export const AIGeneratorModal = ({
             ) : (
               <>
                 <span>💳</span>
-                <span>Pay $2 & Generate</span>
+                <span>Pay $1.69 & Generate</span>
               </>
             )}
           </button>

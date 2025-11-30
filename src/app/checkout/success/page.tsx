@@ -164,7 +164,7 @@ function SuccessContent() {
               </p>
             </div>
           )}
-          <p className="text-xs text-gray-500 mt-4">This may take 10-30 seconds</p>
+          <p className="text-xs text-gray-500 mt-4">Generating 4K high-resolution image, this may take ~20-60 seconds</p>
         </motion.div>
       </div>
     );
