@@ -6,6 +6,7 @@ import { Footer } from '@/components/Layout/Footer';
 import "@/styles/globals.css";
 import "@/styles/animations.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { WebVitalsReporter } from "@/components/Analytics/WebVitalsReporter";
 import { organizationSchema, websiteSchema, generateSchemaScript } from '@/lib/seo/schema';
 
 // ================================================================
@@ -23,6 +24,12 @@ export const metadata: Metadata = {
     description: "Create stunning ambigrams with different length words - perfect for tattoos, logos, and artistic designs",
     type: "website",
     locale: "en_US",
+  },
+  // RSS Feed 链接
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss.xml',
+    },
   },
 };
 
@@ -59,7 +66,7 @@ export default function RootLayout({
         <main className="min-h-screen">
           {children}
           {process.env.NODE_ENV === "production" && <GoogleAnalytics />}
-
+          <WebVitalsReporter />
         </main>
         <Footer />
       </body>

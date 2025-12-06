@@ -226,8 +226,9 @@ function SuccessContent() {
           {imageUrl && (
             <img
               src={imageUrl}
-              alt="AI Generated Ambigram"
+              alt={`AI generated ambigram artwork${generationInfo?.text ? ` for "${generationInfo.text}"` : ''}${generationInfo?.style ? ` in ${generationInfo.style} style` : ''} - custom typography design created with AmbigramGen`}
               className="w-full h-auto"
+              loading="eager"
             />
           )}
         </div>

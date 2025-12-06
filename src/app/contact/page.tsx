@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { PageFAQ, contactFAQs } from '@/components/SEO/PageFAQ';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -266,6 +267,13 @@ export default function ContactPage() {
             </a>
           </div>
         </motion.div>
+
+        {/* Contact FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={contactFAQs}
+          title="Contact Questions"
+          description="Common questions about reaching us"
+        />
       </div>
     </div>
   );

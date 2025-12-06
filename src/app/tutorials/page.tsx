@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { PageFAQ, tutorialListFAQs } from '@/components/SEO/PageFAQ';
 
 interface Tutorial {
   id: string;
@@ -349,6 +350,13 @@ export default function TutorialsPage() {
             </div>
           </div>
         </motion.div>
+
+        {/* Tutorial List FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={tutorialListFAQs}
+          title="Tutorial Questions"
+          description="Everything you need to know about learning ambigrams"
+        />
       </div>
     </div>
   );

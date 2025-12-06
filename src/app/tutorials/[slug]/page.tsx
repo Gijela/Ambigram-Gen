@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { Breadcrumb } from '@/components/SEO/Breadcrumb';
 import { SocialShare } from '@/components/SEO/SocialShare';
 import { generateHowToSchema } from '@/lib/seo/schema';
+import { PageFAQ, tutorialFAQs } from '@/components/SEO/PageFAQ';
 
 interface TutorialStep {
   id: number;
@@ -1102,6 +1103,13 @@ export default function TutorialDetailPage() {
               ))}
           </div>
         </motion.div>
+
+        {/* Tutorial FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={tutorialFAQs}
+          title="Tutorial Questions"
+          compact={true}
+        />
       </div>
     </div>
   );

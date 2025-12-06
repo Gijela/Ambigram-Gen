@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { PageFAQ, aboutFAQs } from '@/components/SEO/PageFAQ';
 import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 
 // ================================================================
@@ -233,6 +234,13 @@ export default function AboutPage() {
             </div>
           </div>
         </motion.section>
+
+        {/* About FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={aboutFAQs}
+          title="About AmbigramGen"
+          description="Common questions about our team and mission"
+        />
       </div>
     </div>
   );

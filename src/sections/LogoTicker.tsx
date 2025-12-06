@@ -1,4 +1,10 @@
 "use client";
+// ================================================================
+// LogoTicker 组件 - 合作品牌滚动展示
+// ================================================================
+// SEO 优化：每个 logo 使用描述性 alt text
+// ================================================================
+
 import {
   AcmeLogo,
   ApexLogo,
@@ -10,13 +16,14 @@ import {
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+// Logo 配置：包含图片源和描述性 alt text
 const logos = [
-  AcmeLogo,
-  PulseLogo,
-  EchoLogo,
-  CelestialLogo,
-  ApexLogo,
-  QuantumLogo,
+  { src: AcmeLogo, alt: "Acme Corporation logo - technology partner" },
+  { src: PulseLogo, alt: "Pulse Media logo - creative agency partner" },
+  { src: EchoLogo, alt: "Echo Design logo - design studio partner" },
+  { src: CelestialLogo, alt: "Celestial Tech logo - innovation partner" },
+  { src: ApexLogo, alt: "Apex Industries logo - enterprise partner" },
+  { src: QuantumLogo, alt: "Quantum Labs logo - research partner" },
 ];
 
 export const LogoTicker = () => {
@@ -41,11 +48,12 @@ export const LogoTicker = () => {
               {[...logos, ...logos].map((logo, index) => (
                 <Image
                   key={index}
-                  src={logo.src}
-                  width={logo.width}
-                  height={logo.height}
-                  alt="Logo Ticker"
+                  src={logo.src.src}
+                  width={logo.src.width}
+                  height={logo.src.height}
+                  alt={logo.alt}
                   className="h-6 w-auto"
+                  loading="lazy"
                 />
               ))}
             </motion.div>

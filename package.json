@@ -24,6 +24,7 @@
     "sharp": "^0.33.4",
     "stripe": "^20.0.0",
     "tailwindcss-animate": "^1.0.7",
+    "web-vitals": "^5.1.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {

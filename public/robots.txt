@@ -17,9 +17,12 @@ Disallow: /_next/
 Disallow: /api/
 
 # ──────────────────────────────────────────────────────────────
-# Sitemap location
+# Sitemap and RSS Feed locations
 # ──────────────────────────────────────────────────────────────
 Sitemap: https://ambigramgen.com/sitemap.xml
+
+# RSS Feed for blog content discovery
+# Helps AI crawlers and feed readers discover new content
 
 # ──────────────────────────────────────────────────────────────
 # Crawl-delay (optional, for polite crawlers)

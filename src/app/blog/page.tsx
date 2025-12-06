@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { PageFAQ, blogListFAQs } from '@/components/SEO/PageFAQ';
 
 interface BlogPost {
   id: string;
@@ -357,6 +358,13 @@ export default function BlogPage() {
             </div>
           </div>
         </motion.section>
+
+        {/* Blog List FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={blogListFAQs}
+          title="About Our Blog"
+          description="Learn more about AmbigramGen's blog and content"
+        />
       </div>
     </div>
   );

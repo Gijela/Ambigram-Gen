@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { PageFAQ, feedbackFAQs } from '@/components/SEO/PageFAQ';
 
 export default function FeedbackPage() {
   const [feedbackData, setFeedbackData] = useState({
@@ -315,6 +316,13 @@ export default function FeedbackPage() {
             </div>
           </div>
         </motion.div>
+
+        {/* Feedback FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={feedbackFAQs}
+          title="Feedback Questions"
+          description="Common questions about submitting feedback"
+        />
       </div>
     </div>
   );

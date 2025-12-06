@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { PageFAQ, galleryFAQs } from '@/components/SEO/PageFAQ';
 
 interface GalleryItem {
   id: string;
@@ -387,6 +388,13 @@ export default function GalleryPage() {
             </p>
           </div>
         </motion.div>
+
+        {/* Gallery FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={galleryFAQs}
+          title="Gallery Questions"
+          description="Learn more about our ambigram showcase"
+        />
       </div>
     </div>
   );

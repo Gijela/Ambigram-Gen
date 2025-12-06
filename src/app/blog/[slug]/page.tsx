@@ -7,6 +7,8 @@ import { getBlogBySlug } from '@/lib/seo/slugs';
 import { Breadcrumb } from '@/components/SEO/Breadcrumb';
 import { SocialShare } from '@/components/SEO/SocialShare';
 import { generateArticleSchema } from '@/lib/seo/schema';
+import { PageFAQ, blogArticleFAQs } from '@/components/SEO/PageFAQ';
+import { AboutAuthor } from '@/components/SEO/AuthorBox';
 
 interface BlogPost {
   id: string;
@@ -1402,6 +1404,13 @@ export default function BlogDetailPage() {
           </motion.section>
         )}
 
+        {/* Author Box (E-A-T 优化) */}
+        <AboutAuthor 
+          authorName={post.author} 
+          publishDate={post.publishDate}
+          readTime={post.readTime}
+        />
+
         {/* Share and Actions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1443,6 +1452,13 @@ export default function BlogDetailPage() {
             </button>
           </div>
         </motion.div>
+
+        {/* Blog Article FAQ (GEO 优化) */}
+        <PageFAQ
+          faqs={blogArticleFAQs}
+          title="Related Questions"
+          compact={true}
+        />
       </div>
     </div>
   );
