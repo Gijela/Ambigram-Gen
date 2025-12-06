@@ -234,7 +234,9 @@ export class AmbigramEngine {
     const height = 200;
     const centerY = height / 2;
     
-    let svgContent = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">`;
+    // ✨ 响应式设计：移除固定宽高,通过 viewBox 和容器控制尺寸
+    // 这样 SVG 会自动缩放以适应任何屏幕(移动端/桌面端)
+    let svgContent = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto; max-width: ${width}px;">`;
     
     // 🔥 Fix: Get font effects and add to SVG definitions
     const fontEffects = this.getFontSpecificEffects(config.fontFamily, config.fontSize);
@@ -1142,7 +1144,7 @@ export class AmbigramEngine {
 
     // 移除双向图说明，保持纯净的预览
     return `
-      <svg width="${canvasWidth}" height="${canvasHeight}" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 ${canvasWidth} ${canvasHeight}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto; max-width: ${canvasWidth}px;">
         ${enhancedDefs}
         <rect width="100%" height="100%" fill="transparent"/>
         ${backgroundEffects}

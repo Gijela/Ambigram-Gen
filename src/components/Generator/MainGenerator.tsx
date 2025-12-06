@@ -67,7 +67,7 @@ export const MainGenerator = () => {
             className="space-y-6"
           >
             {/* Input Form */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-3 md:p-6 border border-white/20">
               <h3 className="text-xl font-semibold text-white mb-4">
                 Enter Text
               </h3>
@@ -81,7 +81,7 @@ export const MainGenerator = () => {
                   whileTap={{ scale: isGenerating ? 1 : 0.98 }}
                   onClick={handleGenerate}
                   disabled={isGenerating || !inputText.trim()}
-                  className={`flex-1 py-3 px-6 font-semibold rounded-xl transition-all duration-300 ${
+                  className={`py-3 px-2 md:px-6 font-semibold rounded-xl transition-all duration-300 ${
                     isGenerating
                       ? 'bg-gradient-to-r from-purple-500 to-pink-500 cursor-wait'
                       : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
@@ -101,9 +101,9 @@ export const MainGenerator = () => {
                     </div>
                   ) : (
                     <div className="flex items-center justify-center space-x-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {/* <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
+                      </svg> */}
                       <span>Generate</span>
                     </div>
                   )}
@@ -115,7 +115,7 @@ export const MainGenerator = () => {
                   whileTap={{ scale: 0.98 }}
                   onClick={handleOpenAIModal}
                   disabled={!inputText.trim()}
-                  className={`flex-1 py-3 px-6 font-semibold rounded-xl transition-all duration-300
+                  className={`flex-1 py-3 px-2 md:px-6 font-semibold rounded-xl transition-all duration-300
                     bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600
                     ${!inputText.trim() ? 'opacity-50 cursor-not-allowed' : 'text-white'}
                     relative overflow-hidden group`}
@@ -203,7 +203,7 @@ export const MainGenerator = () => {
             className="space-y-6"
           >
             {/* Customization Panel */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 md:p-6 border border-white/20">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold text-white">
                   Advanced Customization
@@ -220,7 +220,7 @@ export const MainGenerator = () => {
             </div>
 
             {/* Preview Canvas */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 min-h-[500px]">
+            <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 md:p-6 border border-white/20 min-h-[280px] sm:min-h-[400px] lg:min-h-[500px] overflow-hidden">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold text-white">
                   Live Preview

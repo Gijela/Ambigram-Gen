@@ -56,7 +56,7 @@ export const PreviewCanvas = () => {
     <div className="space-y-4">
       {/* Preview Area */}
       <div className="relative">
-        <div className="aspect-[4/3] bg-gradient-to-br from-black/20 via-purple-900/10 to-black/20 rounded-xl border border-white/10 overflow-hidden min-h-[300px] flex items-center justify-center backdrop-blur-sm">
+        <div className="md:aspect-[4/3] bg-gradient-to-br from-black/20 via-purple-900/10 to-black/20 rounded-xl border border-white/10 overflow-hidden min-h-[300px] flex items-center justify-center backdrop-blur-sm">
           {/* Background Decoration Effects */}
           <div className="absolute inset-0 opacity-30">
             <div className="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
@@ -124,15 +124,16 @@ export const PreviewCanvas = () => {
                 >
                   {!imageError ? (
                     <motion.div
-                      className="max-w-full max-h-full relative"
+                      className="max-w-full max-h-full relative px-4"
                       initial={{ filter: 'blur(10px)', opacity: 0 }}
                       animate={{ filter: 'blur(0px)', opacity: 1 }}
                       transition={{ duration: 0.5 }}
                       dangerouslySetInnerHTML={{ __html: generationResult.svg }}
                       onError={() => setImageError(true)}
                       style={{
-                        minWidth: '300px',
-                        minHeight: '150px'
+                        // 🎯 移动端响应式:移除固定最小宽度,让 SVG 自适应
+                        minHeight: '150px',
+                        width: '100%'
                       }}
                     />
                   ) : (
@@ -184,12 +185,17 @@ export const PreviewCanvas = () => {
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center relative z-10">
                     <motion.div
-                      className="w-full max-h-full mb-4 flex items-center justify-center"
+                      className="w-full max-h-full mb-4 flex items-center justify-center px-4"
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.5 }}
                       dangerouslySetInnerHTML={{ __html: livePreview.replaceAll('|', '') }}
-                      style={{ minHeight: '200px' }}
+                      style={{ 
+                        minHeight: '200px',
+                        // 🎯 确保 SVG 在容器内响应式缩放,移动端不溢出
+                        maxWidth: '100%',
+                        overflow: 'hidden'
+                      }}
                     />
                     <div className="text-center">
                       <motion.div
