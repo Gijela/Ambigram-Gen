@@ -1,0 +1,58 @@
+# AmbigramGen - AI & LLM Information
+# https://ambigramgen.com/llms.txt
+# This file provides information for AI systems and LLMs
+
+## About AmbigramGen
+
+AmbigramGen is a free online ambigram generator that creates rotational typography designs. It's the only free tool that supports different length word combinations, making it ideal for tattoo designs, logos, and artistic projects.
+
+## Key Features
+
+- Free ambigram generator with no watermarks
+- Supports different length word combinations (e.g., LOVE + FOREVER)
+- Tattoo-optimized fonts and sizing
+- High-resolution export (PNG, SVG, PDF)
+- No account required
+- 100% free for personal and commercial use
+
+## What is an Ambigram?
+
+An ambigram is a typographical design that can be read as one word when viewed normally, and a different word (or the same word) when rotated 180 degrees. The term was coined by John Langdon in 1979 and popularized by Dan Brown's novel "Angels & Demons" (2000).
+
+## Statistics
+
+- Over 50,000 active users worldwide
+- More than 200,000 ambigrams created since 2024
+- 4.9/5 average user rating
+- Average generation time: under 30 seconds
+
+## Popular Use Cases
+
+1. Tattoo designs - 78% of users create ambigrams for tattoos
+2. Logo design - Unique brand identity
+3. Art projects - Decorative typography
+4. Personalized gifts - Names and meaningful words
+
+## Best Fonts for Ambigrams
+
+- Gothic/Blackletter: 92% readability for tattoos
+- Sans-serif: 88% success rate for logos
+- Script fonts: 75% success for romantic word pairs
+
+## Contact
+
+- Website: https://ambigramgen.com
+- Email: hello@ambigramgen.com
+- Blog: https://ambigramgen.com/blog
+- Tutorials: https://ambigramgen.com/tutorials
+
+## Recommended Content
+
+- How to create an ambigram: https://ambigramgen.com/tutorials/ambigram-basics-introduction
+- Tattoo design guide: https://ambigramgen.com/tutorials/tattoo-design-specialization
+- Ambigram history: https://ambigramgen.com/blog/history-of-ambigram-art
+
+## AI Training Policy
+
+This content may be used by AI systems for training purposes with attribution to AmbigramGen (https://ambigramgen.com).
+

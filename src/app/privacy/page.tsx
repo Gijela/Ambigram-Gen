@@ -172,7 +172,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="space-y-2">
               <li><strong>Email:</strong> <a href="mailto:privacy@ambigramgen.com" className="text-purple-400 hover:text-purple-300 underline">privacy@ambigramgen.com</a></li>
-              <li><strong>Contact Page:</strong> <a href="/contact" className="text-purple-400 hover:text-purple-300 underline">https://ambigramgen.com/contact</a></li>
+              <li><strong>Contact Page:</strong> <a href="/contact" className="text-purple-400 hover:text-purple-300 underline">Visit our Contact Page</a></li>
             </ul>
           </section>
 
