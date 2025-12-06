@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { Breadcrumb } from '@/components/SEO/Breadcrumb';
+import { SocialShare } from '@/components/SEO/SocialShare';
+import { generateHowToSchema } from '@/lib/seo/schema';
 
 interface TutorialStep {
   id: number;
@@ -16,6 +19,7 @@ interface TutorialStep {
 
 interface TutorialDetail {
   id: string;
+  slug: string;  // ← SEO-friendly URL slug
   title: string;
   description: string;
   category: string;
@@ -30,8 +34,9 @@ interface TutorialDetail {
 }
 
 const tutorialData: { [key: string]: TutorialDetail } = {
-  '1': {
+  'ambigram-basics-introduction': {
     id: '1',
+    slug: 'ambigram-basics-introduction',
     title: 'Ambigram Basics Tutorial',
     description: 'Learn the basic concepts and creation methods of ambigrams from scratch, and master the core principles of ambigram design.',
     category: 'Basic Tutorial',
@@ -100,8 +105,9 @@ const tutorialData: { [key: string]: TutorialDetail } = {
       }
     ]
   },
-  '2': {
+  'different-length-words-technique': {
     id: '2',
+    slug: 'different-length-words-technique',
     title: 'Ambigram Techniques for Words of Different Lengths',
     description: 'Master advanced techniques for handling word combinations of different lengths to create more complex and interesting ambigram artworks.',
     category: 'Advanced Techniques',
@@ -200,8 +206,9 @@ const tutorialData: { [key: string]: TutorialDetail } = {
       }
     ]
   },
-  '3': {
+  'tattoo-design-specialization': {
     id: '3',
+    slug: 'tattoo-design-specialization',
     title: 'Ambigrams for Tattoo Design',
     description: 'Professional methods for optimizing ambigrams for tattoo design, considering body curves and special tattoo requirements.',
     category: 'Tattoo Design',
@@ -320,8 +327,9 @@ const tutorialData: { [key: string]: TutorialDetail } = {
       }
     ]
   },
-  '4': {
+  'multilingual-creation-guide': {
     id: '4',
+    slug: 'multilingual-creation-guide',
     title: 'Guide to Creating Chinese Ambigrams',
     description: 'Special handling methods and techniques for Chinese character ambigrams, mastering the essence of creating Hanzi ambigrams.',
     category: 'Chinese Tutorial',
@@ -460,8 +468,9 @@ const tutorialData: { [key: string]: TutorialDetail } = {
       }
     ]
   },
-  '5': {
+  'font-selection-and-pairing': {
     id: '5',
+    slug: 'font-selection-and-pairing',
     title: 'Font Selection and Pairing',
     description: 'How to choose the right font to enhance the ambigram effect, mastering font aesthetics and pairing principles.',
     category: 'Design Theory',
@@ -540,8 +549,9 @@ const tutorialData: { [key: string]: TutorialDetail } = {
       }
     ]
   },
-  '6': {
+  'advanced-customization-techniques': {
     id: '6',
+    slug: 'advanced-customization-techniques',
     title: 'Advanced Customization Techniques',
     description: 'Use advanced features to create unique ambigram artworks and master professional-level creation techniques.',
     category: 'Advanced Techniques',
@@ -726,8 +736,8 @@ const difficultyLabels = {
 
 export default function TutorialDetailPage() {
   const params = useParams();
-  const tutorialId = params.id as string;
-  const tutorial = tutorialData[tutorialId];
+  const tutorialSlug = params.slug as string;
+  const tutorial = tutorialData[tutorialSlug];
   
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
@@ -767,9 +777,37 @@ export default function TutorialDetailPage() {
   const currentStepData = tutorial.steps.find(step => step.id === currentStep);
   const progress = (completedSteps.length / tutorial.steps.length) * 100;
 
+  // 生成 HowTo Schema (SEO优化)
+  const howToSchema = generateHowToSchema({
+    title: tutorial.title,
+    description: tutorial.description,
+    totalTime: tutorial.duration,
+    steps: tutorial.steps.map(step => ({
+      name: step.title,
+      text: step.content,
+    })),
+    slug: tutorial.slug,
+  });
+
   return (
     <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 min-h-screen">
+      {/* HowTo Schema.org 结构化数据 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+
       <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* 面包屑导航 (SEO优化) */}
+        <div className="mb-6">
+          <Breadcrumb
+            items={[
+              { label: 'Tutorials', href: '/tutorials' },
+              { label: tutorial.title, href: `/tutorials/${tutorial.slug}` },
+            ]}
+          />
+        </div>
+
         {/* Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -859,7 +897,7 @@ export default function TutorialDetailPage() {
 
           {/* Prerequisites */}
           {tutorial.prerequisites && (
-            <div>
+            <div className="mb-6">
               <h3 className="text-white font-semibold mb-3">Prerequisites</h3>
               <div className="flex flex-wrap gap-2">
                 {tutorial.prerequisites.map((prereq, index) => (
@@ -870,6 +908,15 @@ export default function TutorialDetailPage() {
               </div>
             </div>
           )}
+
+          {/* 社交分享按钮 (SEO优化：增加内容传播) */}
+          <div className="pt-4 border-t border-white/10">
+            <SocialShare
+              url={`https://ambigramgen.com/tutorials/${tutorial.slug}`}
+              title={tutorial.title}
+              description={tutorial.description}
+            />
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-4 gap-8">
@@ -1024,12 +1071,12 @@ export default function TutorialDetailPage() {
           <h3 className="text-2xl font-bold text-white mb-6">Related Tutorials</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.values(tutorialData)
-              .filter(t => t.id !== tutorialId)
+              .filter(t => t.slug !== tutorialSlug)
               .slice(0, 3)
               .map((relatedTutorial) => (
                 <Link
                   key={relatedTutorial.id}
-                  href={`/tutorials/${relatedTutorial.id}`}
+                  href={`/tutorials/${relatedTutorial.slug}`}
                   className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20
                            hover:border-purple-500/50 transition-all duration-300 group"
                 >

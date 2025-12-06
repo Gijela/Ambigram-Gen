@@ -1,10 +1,18 @@
 import React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { twMerge } from "tailwind-merge";
 import { Header } from '@/components/Layout/Header';
 import { Footer } from '@/components/Layout/Footer';
 import "@/styles/globals.css";
+import "@/styles/animations.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { organizationSchema, websiteSchema, generateSchemaScript } from '@/lib/seo/schema';
+
+// ================================================================
+// Root Layout Metadata
+// ================================================================
+// Note: 子页面会通过各自的 layout.tsx 覆盖这些默认值
+// ================================================================
 
 export const metadata: Metadata = {
   title: "AmbigramGen.com - Free Ambigram Generator | Different Length Words Supported",
@@ -14,8 +22,17 @@ export const metadata: Metadata = {
     title: "AmbigramGen.com - Free Ambigram Generator",
     description: "Create stunning ambigrams with different length words - perfect for tattoos, logos, and artistic designs",
     type: "website",
-    locale: "zh_CN",
+    locale: "en_US",
   },
+};
+
+// ================================================================
+// Viewport Configuration (Next.js 14+ 要求单独 export)
+// ================================================================
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -25,6 +42,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Schema.org Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: generateSchemaScript(organizationSchema, websiteSchema)
+          }}
+        />
+      </head>
       <body
         className={twMerge("font-sans", "bg-black text-white antialiased")}
         suppressHydrationWarning

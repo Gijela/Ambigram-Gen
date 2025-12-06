@@ -47,7 +47,7 @@ export const Header = () => {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">AmbigramGen</h1>
+              <div className="text-xl font-bold text-white">AmbigramGen</div>
               <p className="text-xs text-gray-400">Free Ambigram Generator</p>
             </div>
           </Link>

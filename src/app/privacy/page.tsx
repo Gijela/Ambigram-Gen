@@ -1,18 +1,16 @@
-'use client';
-
-import { motion } from 'framer-motion';
+// ================================================================
+// Privacy Policy Page - Server Component (SSR)
+// ================================================================
+// 移除 'use client' 和 framer-motion，改用 CSS 动画
+// SEO 优化：服务端渲染，首屏速度更快
+// ================================================================
 
 export default function PrivacyPage() {
   return (
     <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
       <div className="max-w-4xl mx-auto px-4 py-16">
         {/* Page Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Privacy Policy
@@ -22,245 +20,169 @@ export default function PrivacyPage() {
             We value your privacy and are committed to protecting your personal information security
           </p>
           <p className="text-gray-400 mt-4">Last updated: January 1, 2025</p>
-        </motion.div>
+        </div>
 
         {/* Policy Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 space-y-8"
-        >
-          {/* Overview */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">1. Overview</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>
-                AmbigramGen.com (hereinafter referred to as "we" or "this website") understands the importance of personal information to you and will do our utmost to protect the security and reliability of your personal information.
-                We are committed to maintaining your trust in us and adhering to the following principles to protect your personal information: principle of consistency of rights and responsibilities, principle of clear purpose, principle of choice and consent,
-                principle of minimum necessity, principle of ensuring security, principle of subject participation, principle of openness and transparency, etc.
-              </p>
-              <p>
-                This privacy policy applies to information processing activities when you access and use our services through the AmbigramGen.com website, mobile applications, or other online services.
-              </p>
-            </div>
+        <div className="space-y-8 text-gray-300 animate-slide-up">
+          {/* Section 1 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">1. Introduction</h2>
+            <p className="mb-4">
+              AmbigramGen.com (hereinafter referred to as &quot;we&quot; or &quot;this website&quot;) respects and protects the privacy of all users. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our website.
+            </p>
+            <p>
+              By using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with this privacy policy, please stop using our services.
+            </p>
           </section>
 
-          {/* Information Collection */}
-          <section>
+          {/* Section 2 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
             <h2 className="text-2xl font-bold text-white mb-4">2. Information We Collect</h2>
-            <div className="text-gray-300 space-y-4">
-              <h3 className="text-lg font-semibold text-white">2.1 Information You Actively Provide</h3>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Contact information: Name, email address, etc. provided when you contact us</li>
-                <li>Feedback information: Comments, suggestions, or error reports you submit</li>
-                <li>Creative content: Text content you input for ambigram generation</li>
-              </ul>
+            
+            <h3 className="text-xl font-semibold text-purple-300 mb-3">2.1 Information You Actively Provide</h3>
+            <ul className="list-disc list-inside space-y-2 ml-4 mb-4">
+              <li><strong>Contact Information:</strong> Email address, name, etc., when you contact us</li>
+              <li><strong>Feedback Content:</strong> Opinions and suggestions when you submit feedback</li>
+              <li><strong>Generated Content:</strong> Text input for creating ambigrams</li>
+            </ul>
 
-              <h3 className="text-lg font-semibold text-white mt-6">2.2 Automatically Collected Information</h3>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Device information: Browser type, operating system, device model, etc.</li>
-                <li>Usage information: Access time, page browsing records, feature usage</li>
-                <li>Technical information: IP address, cookies, local storage data</li>
-              </ul>
-
-              <h3 className="text-lg font-semibold text-white mt-6">2.3 Information We Do Not Collect</h3>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Sensitive personal information: ID numbers, bank accounts, biometric information, etc.</li>
-                <li>Third-party account information: Unless you explicitly authorize it</li>
-                <li>Minor information: We do not intentionally collect personal information from children under 13</li>
-              </ul>
-            </div>
+            <h3 className="text-xl font-semibold text-purple-300 mb-3">2.2 Information Automatically Collected</h3>
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li><strong>Device Information:</strong> Browser type, operating system, screen resolution</li>
+              <li><strong>Usage Data:</strong> Visited pages, feature usage time, click behavior</li>
+              <li><strong>IP Address:</strong> Your approximate geographic location</li>
+              <li><strong>Cookies:</strong> For improving user experience and analyzing website usage</li>
+            </ul>
           </section>
 
-          {/* Information Usage */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">3. How We Use Information</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>We use the collected information for the following purposes:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li><strong>Provide services:</strong> Process your ambigram generation requests and provide personalized experiences</li>
-                <li><strong>Improve products:</strong> Analyze usage patterns, optimize algorithms and user interfaces</li>
-                <li><strong>Technical support:</strong> Respond to your inquiries and resolve technical issues</li>
-                <li><strong>Security protection:</strong> Detect and prevent fraud, abuse, and security threats</li>
-                <li><strong>Legal compliance:</strong> Comply with applicable laws and regulations</li>
-              </ul>
-            </div>
+          {/* Section 3 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">3. How We Use Your Information</h2>
+            <p className="mb-4">We use the collected information for the following purposes:</p>
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li><strong>Provide Services:</strong> Process your requests to generate ambigrams</li>
+              <li><strong>Improve Services:</strong> Analyze usage data to optimize website functionality and performance</li>
+              <li><strong>Communication:</strong> Respond to your inquiries, feedback, and support requests</li>
+              <li><strong>Security:</strong> Detect and prevent fraud, abuse, and security issues</li>
+              <li><strong>Analytics:</strong> Understand user behavior for improving user experience</li>
+              <li><strong>Legal Compliance:</strong> Comply with applicable laws and regulations</li>
+            </ul>
           </section>
 
-          {/* Information Storage */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">4. Information Storage and Protection</h2>
-            <div className="text-gray-300 space-y-4">
-              <h3 className="text-lg font-semibold text-white">4.1 Storage Location</h3>
-              <p>
-                Your information is primarily stored on your local device. We use browser local storage technology to save your creation history and preference settings,
-                and this data is not automatically uploaded to our servers.
-              </p>
+          {/* Section 4 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">4. Information Sharing and Disclosure</h2>
+            <p className="mb-4">We will not sell, rent, or share your personal information with third parties, except in the following cases:</p>
+            
+            <h3 className="text-xl font-semibold text-purple-300 mb-3">4.1 Third-Party Service Providers</h3>
+            <p className="mb-2">We may share information with trusted third-party service providers, such as:</p>
+            <ul className="list-disc list-inside space-y-2 ml-4 mb-4">
+              <li><strong>Analytics Services:</strong> Google Analytics (for website usage analysis)</li>
+              <li><strong>Hosting Services:</strong> Cloud service providers for storing data</li>
+              <li><strong>Communication Tools:</strong> Email service providers</li>
+            </ul>
+            <p className="mb-4">These service providers can only access information necessary to perform specific tasks and are obligated to protect your information.</p>
 
-              <h3 className="text-lg font-semibold text-white mt-6">4.2 Security Measures</h3>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Data encryption: Use HTTPS protocol to protect data transmission security</li>
-                <li>Access control: Strictly limit access permissions to personal information</li>
-                <li>Security monitoring: Continuously monitor system security, promptly detect and respond to threats</li>
-                <li>Regular audits: Regularly assess and update security measures</li>
-              </ul>
-
-              <h3 className="text-lg font-semibold text-white mt-6">4.3 Retention Period</h3>
-              <p>
-                We only retain your personal information for the period necessary to achieve the collection purpose. Locally stored data is under your control,
-                and you can delete this information at any time by clearing your browser data.
-              </p>
-            </div>
+            <h3 className="text-xl font-semibold text-purple-300 mb-3">4.2 Legal Requirements</h3>
+            <p className="mb-2">We may disclose your information if required to:</p>
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li>Comply with legal requirements, court orders, or government requests</li>
+              <li>Protect our or others&apos; rights, property, or safety</li>
+              <li>Prevent or investigate possible illegal activities</li>
+            </ul>
           </section>
 
-          {/* Information Sharing */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">5. Information Sharing and Disclosure</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>We promise not to sell, rent, or otherwise commercialize your personal information. We may share your information in the following circumstances:</p>
-              
-              <h3 className="text-lg font-semibold text-white">5.1 With Your Consent</h3>
-              <p>With your explicit consent, we will share your specified information with third parties.</p>
+          {/* Section 5 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">5. Cookies and Tracking Technologies</h2>
+            <p className="mb-4">
+              We use Cookies and similar technologies to enhance user experience and analyze website usage.
+            </p>
+            
+            <h3 className="text-xl font-semibold text-purple-300 mb-3">Types of Cookies:</h3>
+            <ul className="list-disc list-inside space-y-2 ml-4 mb-4">
+              <li><strong>Essential Cookies:</strong> Necessary for website normal operation</li>
+              <li><strong>Analytics Cookies:</strong> For collecting usage statistics and analyzing user behavior</li>
+              <li><strong>Preference Cookies:</strong> For remembering your settings and preferences</li>
+            </ul>
 
-              <h3 className="text-lg font-semibold text-white mt-6">5.2 Legal Requirements</h3>
-              <p>
-                We may disclose your information when required by laws and regulations, legal procedures, litigation, or government authorities.
-              </p>
-
-              <h3 className="text-lg font-semibold text-white mt-6">5.3 Business Transfer</h3>
-              <p>
-                In the event of business changes such as mergers, acquisitions, or asset transfers, your information may be transferred as part of business assets.
-              </p>
-            </div>
+            <p>
+              You can manage or disable Cookies through your browser settings, but this may affect some website functionalities. Please visit our <a href="/cookies" className="text-purple-400 hover:text-purple-300 underline">Cookie Policy</a> page for more information.
+            </p>
           </section>
 
-          {/* Your Rights */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">6. Your Rights</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>According to applicable laws and regulations, you have the following rights:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li><strong>Right of access:</strong> Understand how we process your personal information</li>
-                <li><strong>Right of rectification:</strong> Request us to correct inaccurate personal information</li>
-                <li><strong>Right of erasure:</strong> Request us to delete your personal information</li>
-                <li><strong>Right to restrict processing:</strong> Request us to restrict the processing of your personal information</li>
-                <li><strong>Right to data portability:</strong> Request us to transfer your data to other service providers</li>
-                <li><strong>Right to object:</strong> Object to our processing of your personal information based on legitimate interests</li>
-              </ul>
-              <p className="mt-4">
-                To exercise the above rights, please contact us through our <a href="/contact" className="text-purple-400 hover:text-purple-300">Contact Us</a> page.
-              </p>
-            </div>
+          {/* Section 6 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">6. Data Security</h2>
+            <p className="mb-4">
+              We take reasonable technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction.
+            </p>
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li><strong>Encryption:</strong> Use HTTPS encryption to transmit data</li>
+              <li><strong>Access Control:</strong> Strictly limit access to personal information</li>
+              <li><strong>Security Monitoring:</strong> Regularly monitor and update security measures</li>
+              <li><strong>Data Backup:</strong> Regularly back up data to prevent loss</li>
+            </ul>
+            <p className="mt-4">
+              However, no transmission over the Internet is completely secure. While we strive to protect your information, we cannot guarantee absolute security.
+            </p>
           </section>
 
-          {/* Cookie Policy */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">7. Cookies and Similar Technologies</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>We use cookies and similar technologies to improve your user experience:</p>
-              
-              <h3 className="text-lg font-semibold text-white">7.1 Necessary Cookies</h3>
-              <p>These cookies are essential for the normal operation of the website, including security, network management, and accessibility features.</p>
-
-              <h3 className="text-lg font-semibold text-white mt-6">7.2 Functional Cookies</h3>
-              <p>Used to remember your preference settings, such as language selection, font preferences, etc., to provide personalized experiences.</p>
-
-              <h3 className="text-lg font-semibold text-white mt-6">7.3 Analytics Cookies</h3>
-              <p>Help us understand website usage to improve our services.</p>
-
-              <p className="mt-4">
-                You can manage cookie preferences through your browser settings. For detailed information, please see our
-                <a href="/cookies" className="text-purple-400 hover:text-purple-300"> Cookie Policy</a>.
-              </p>
-            </div>
+          {/* Section 7 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">7. Your Rights</h2>
+            <p className="mb-4">You have the following rights regarding your personal information:</p>
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li><strong>Access:</strong> Request to view the personal information we hold about you</li>
+              <li><strong>Correction:</strong> Request to correct inaccurate or incomplete information</li>
+              <li><strong>Deletion:</strong> Request to delete your personal information</li>
+              <li><strong>Restriction:</strong> Request to limit the processing of your information</li>
+              <li><strong>Portability:</strong> Request to obtain your data in a common format</li>
+              <li><strong>Objection:</strong> Object to the processing of your information</li>
+            </ul>
+            <p className="mt-4">
+              To exercise these rights, please contact us at <a href="mailto:privacy@ambigramgen.com" className="text-purple-400 hover:text-purple-300 underline">privacy@ambigramgen.com</a>.
+            </p>
           </section>
 
-          {/* Third-Party Services */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">8. Third-Party Services</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these third-party websites.</p>
-              <p>
-                We may use third-party service providers to support our services, such as cloud storage, analytics services, etc.
-                These service providers can only access your information to the extent necessary to provide services and must comply with strict confidentiality obligations.
-              </p>
-            </div>
+          {/* Section 8 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">8. Children&apos;s Privacy</h2>
+            <p>
+              Our services are not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us immediately so we can delete it.
+            </p>
           </section>
 
-          {/* International Transfer */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">9. International Data Transfer</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>
-                Your information may be transferred to and processed in locations outside your country/region.
-                We will ensure that such transfers comply with applicable data protection laws and take appropriate protective measures.
-              </p>
-            </div>
+          {/* Section 9 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">9. Changes to This Privacy Policy</h2>
+            <p className="mb-4">
+              We may update this Privacy Policy from time to time. When we make changes, we will update the &quot;Last updated&quot; date at the top of this page and may notify you through website announcements or email.
+            </p>
+            <p>
+              We encourage you to regularly review this Privacy Policy to stay informed about how we protect your information.
+            </p>
           </section>
 
-          {/* Policy Updates */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">10. Privacy Policy Updates</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>
-                We may update this privacy policy from time to time. For significant changes, we will notify you through website announcements or other appropriate means.
-                Continued use of our services indicates your acceptance of the updated privacy policy.
-              </p>
-              <p>
-                We recommend that you regularly review this page to stay informed about the latest privacy policy.
-              </p>
-            </div>
+          {/* Section 10 */}
+          <section className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-4">10. Contact Us</h2>
+            <p className="mb-4">
+              If you have any questions or concerns about this Privacy Policy, please contact us:
+            </p>
+            <ul className="space-y-2">
+              <li><strong>Email:</strong> <a href="mailto:privacy@ambigramgen.com" className="text-purple-400 hover:text-purple-300 underline">privacy@ambigramgen.com</a></li>
+              <li><strong>Contact Page:</strong> <a href="/contact" className="text-purple-400 hover:text-purple-300 underline">https://ambigramgen.com/contact</a></li>
+            </ul>
           </section>
 
-          {/* Contact Us */}
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">11. Contact Us</h2>
-            <div className="text-gray-300 space-y-4">
-              <p>If you have any questions about this privacy policy or need to exercise your rights, please contact us through the following methods:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Email: privacy@ambigramgen.com</li>
-                <li>Contact page: <a href="/contact" className="text-purple-400 hover:text-purple-300">Contact Us</a></li>
-              </ul>
-              <p>
-                We will respond to your request as soon as possible, usually within 30 days.
-              </p>
-            </div>
-          </section>
-        </motion.div>
-
-        {/* Quick Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-12 grid md:grid-cols-3 gap-4"
-        >
-          <a
-            href="/terms"
-            className="bg-white/5 hover:bg-white/10 border border-white/20 rounded-xl p-4
-                     transition-all duration-300 text-center"
-          >
-            <h3 className="text-white font-semibold mb-2">Terms of Service</h3>
-            <p className="text-gray-400 text-sm">Learn about the terms and conditions of using our services</p>
-          </a>
-          <a
-            href="/cookies"
-            className="bg-white/5 hover:bg-white/10 border border-white/20 rounded-xl p-4
-                     transition-all duration-300 text-center"
-          >
-            <h3 className="text-white font-semibold mb-2">Cookie Policy</h3>
-            <p className="text-gray-400 text-sm">Learn how we use cookies and similar technologies</p>
-          </a>
-          <a
-            href="/contact"
-            className="bg-white/5 hover:bg-white/10 border border-white/20 rounded-xl p-4
-                     transition-all duration-300 text-center"
-          >
-            <h3 className="text-white font-semibold mb-2">Contact Us</h3>
-            <p className="text-gray-400 text-sm">Have questions? We're here to help you anytime</p>
-          </a>
-        </motion.div>
+          {/* Acknowledgment */}
+          <div className="bg-purple-500/10 border border-purple-500/30 rounded-2xl p-6 text-center">
+            <p className="text-lg text-white">
+              Thank you for trusting AmbigramGen.com. We are committed to protecting your privacy and security.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

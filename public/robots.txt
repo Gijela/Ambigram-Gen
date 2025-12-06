@@ -1,0 +1,37 @@
+# ================================================================
+# Robots.txt for AmbigramGen.com
+# ================================================================
+# Allow all search engines to crawl the entire site
+# Sitemap location for faster indexing
+
+# ──────────────────────────────────────────────────────────────
+# Default rules for all robots
+# ──────────────────────────────────────────────────────────────
+User-agent: *
+Allow: /
+
+# ──────────────────────────────────────────────────────────────
+# Block access to Next.js internal directories
+# ──────────────────────────────────────────────────────────────
+Disallow: /_next/
+Disallow: /api/
+
+# ──────────────────────────────────────────────────────────────
+# Sitemap location
+# ──────────────────────────────────────────────────────────────
+Sitemap: https://ambigramgen.com/sitemap.xml
+
+# ──────────────────────────────────────────────────────────────
+# Crawl-delay (optional, for polite crawlers)
+# ──────────────────────────────────────────────────────────────
+# Crawl-delay: 1
+
+# ──────────────────────────────────────────────────────────────
+# Special instructions for specific bots (if needed)
+# ──────────────────────────────────────────────────────────────
+# User-agent: Googlebot
+# Allow: /
+
+# User-agent: bingbot
+# Allow: /
+

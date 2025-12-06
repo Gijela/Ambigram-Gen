@@ -3,9 +3,14 @@
 import { motion } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { getBlogBySlug } from '@/lib/seo/slugs';
+import { Breadcrumb } from '@/components/SEO/Breadcrumb';
+import { SocialShare } from '@/components/SEO/SocialShare';
+import { generateArticleSchema } from '@/lib/seo/schema';
 
 interface BlogPost {
   id: string;
+  slug: string;  // ← 新增 slug 字段
   title: string;
   excerpt: string;
   content: string;
@@ -22,6 +27,7 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: '1',
+    slug: 'history-of-ambigram-art',
     title: 'The History and Development of Ambigram Art',
     excerpt: 'Explore the evolution of ambigrams from ancient symbols to modern digital art, and understand the cultural background and technological development of this unique art form.',
     content: `# The History and Development of Ambigram Art
@@ -94,6 +100,7 @@ As a unique visual language, ambigram art will continue to play an important rol
   },
   {
     id: '2',
+    slug: 'tattoo-design-trends-2025',
     title: 'Ambigram Design Trends in Tattoos',
     excerpt: 'A comprehensive analysis of the most popular ambigram design styles in the tattoo world for 2025, from minimalism to complex geometric patterns.',
     content: `# Ambigram Design Trends in Tattoos
@@ -200,6 +207,7 @@ As a unique form of body art, ambigram tattoos will continue to grow and develop
   },
   {
     id: '3',
+    slug: 'multilingual-ambigram-techniques',
     title: 'Creative Techniques for Chinese Ambigrams',
     excerpt: 'An in-depth analysis of the structural characteristics of Chinese characters, mastering the core techniques and aesthetic principles of creating Hanzi ambigrams.',
     content: `# Creative Techniques for Chinese Ambigrams
@@ -370,6 +378,7 @@ By mastering these creative techniques, we can create Chinese ambigram works tha
   },
   {
     id: '4',
+    slug: 'font-choice-impact-on-ambigrams',
     title: 'The Impact of Font Choice on Ambigram Effects',
     excerpt: 'How different font styles affect the visual outcome of ambigrams, and how to choose the most suitable font for your design.',
     content: `# The Impact of Font Choice on Ambigram Effects
@@ -612,6 +621,7 @@ Font selection is a key factor in the success of ambigram design. By deeply unde
   },
   {
     id: '5',
+    slug: 'ai-technology-in-ambigram-generation',
     title: 'The Application of AI Technology in Ambigram Generation',
     excerpt: 'Exploring how artificial intelligence is revolutionizing the ambigram creation process and its future development prospects.',
     content: `# The Application of AI Technology in Ambigram Generation
@@ -851,6 +861,7 @@ In the future, AI will continue to promote the development of ambigram art, but 
   },
   {
     id: '6',
+    slug: 'ambigrams-in-brand-design',
     title: 'The Application of Ambigrams in Brand Design',
     excerpt: 'How brands can use ambigrams to create a unique visual identity, enhancing brand recall and influence.',
     content: `# The Application of Ambigrams in Brand Design
@@ -1153,19 +1164,20 @@ export default function BlogDetailPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (params.id) {
-      const foundPost = blogPosts.find(p => p.id === params.id);
+    if (params.slug) {
+      // 使用 slug 查找文章 (SEO 友好)
+      const foundPost = blogPosts.find(p => p.slug === params.slug);
       if (foundPost) {
         setPost(foundPost);
         // 获取相关文章（同类别的其他文章）
         const related = blogPosts
-          .filter(p => p.id !== foundPost.id && p.category === foundPost.category)
+          .filter(p => p.slug !== foundPost.slug && p.category === foundPost.category)
           .slice(0, 3);
         setRelatedPosts(related);
       }
       setLoading(false);
     }
-  }, [params.id]);
+  }, [params.slug]);
 
   if (loading) {
     return (
@@ -1196,9 +1208,36 @@ export default function BlogDetailPage() {
     );
   }
 
+  // 生成 Article Schema (SEO优化)
+  const articleSchema = generateArticleSchema({
+    title: post.title,
+    description: post.excerpt,
+    author: post.author,
+    publishDate: post.publishDate,
+    slug: post.slug,
+    imageUrl: post.imageUrl,
+  });
+
   return (
     <div className="bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 min-h-screen">
+      {/* Article Schema.org 结构化数据 */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+
       <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* 面包屑导航 (SEO优化) */}
+        <div className="mb-6">
+          <Breadcrumb
+            items={[
+              { label: 'Blog', href: '/blog' },
+              { label: post.title, href: `/blog/${post.slug}` },
+            ]}
+            className="mb-4"
+          />
+        </div>
+
         {/* Back Button */}
         <motion.button
           initial={{ opacity: 0, x: -20 }}
@@ -1240,7 +1279,7 @@ export default function BlogDetailPage() {
             {post.excerpt}
           </p>
 
-          <div className="flex items-center justify-between text-sm text-gray-400 border-t border-white/10 pt-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between text-sm text-gray-400 border-t border-white/10 pt-6 gap-4">
             <div className="flex items-center">
               <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3">
                 <span className="text-white font-semibold text-sm">
@@ -1260,6 +1299,15 @@ export default function BlogDetailPage() {
                 </span>
               ))}
             </div>
+          </div>
+
+          {/* 社交分享按钮 (SEO优化：增加内容传播) */}
+          <div className="mt-6 pt-6 border-t border-white/10">
+            <SocialShare
+              url={`https://ambigramgen.com/blog/${post.slug}`}
+              title={post.title}
+              description={post.excerpt}
+            />
           </div>
         </motion.header>
 
@@ -1319,7 +1367,7 @@ export default function BlogDetailPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
-                  onClick={() => router.push(`/blog/${relatedPost.id}`)}
+                  onClick={() => router.push(`/blog/${relatedPost.slug}`)}
                   className="bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/20
                            hover:border-purple-500/50 transition-all duration-300 group cursor-pointer"
                 >

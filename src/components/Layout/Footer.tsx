@@ -22,7 +22,7 @@ export const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://x.com/frontendGijela"
+                href="https://x.com/Gijela_ai"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Twitter"
               >
@@ -89,7 +89,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Support Links */}
+          {/* Support Links + Featured Articles */}
           <div>
             <h3 className="text-white font-semibold mb-4">Support</h3>
             <ul className="space-y-2">
@@ -134,6 +134,23 @@ export const Footer = () => {
                 </Link>
               </li>
             </ul>
+            
+            {/* 热门博客文章 (SEO内部链接优化) */}
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold text-purple-400 mb-2">Featured Articles</h4>
+              <ul className="space-y-1 text-sm">
+                <li>
+                  <Link href="/blog/history-of-ambigram-art" className="text-gray-400 hover:text-purple-400 transition-colors">
+                    → History of Ambigrams
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog/tattoo-design-trends-2025" className="text-gray-400 hover:text-purple-400 transition-colors">
+                    → Tattoo Design Trends
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* published website badge */}

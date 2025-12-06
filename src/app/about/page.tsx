@@ -1,6 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+
+// ================================================================
+// SEO Metadata - 关于页面
+// ================================================================
+// Note: metadata export 在 'use client' 组件中不生效
+// 需要创建单独的 layout 或使用服务端组件
+// 临时方案:使用 useEffect 动态设置 document.title
+// ================================================================
 
 export default function AboutPage() {
   const handleEmailContact = () => {

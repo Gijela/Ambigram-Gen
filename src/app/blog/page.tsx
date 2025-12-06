@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 interface BlogPost {
   id: string;
+  slug: string;  // ← SEO-friendly URL slug
   title: string;
   excerpt: string;
   content: string;
@@ -21,6 +22,7 @@ interface BlogPost {
 const mockBlogPosts: BlogPost[] = [
   {
     id: '1',
+    slug: 'history-of-ambigram-art',
     title: 'The History and Evolution of Ambigram Art',
     excerpt: 'Explore the evolution of ambigrams from ancient symbols to modern digital art, understanding the cultural background and technical development of this unique art form.',
     content: '',
@@ -34,6 +36,7 @@ const mockBlogPosts: BlogPost[] = [
   },
   {
     id: '2',
+    slug: 'tattoo-design-trends-2025',
     title: 'Ambigram Design Trends in Tattoo Art',
     excerpt: 'The most popular ambigram design styles in the tattoo world for 2025, from minimalism to complex geometric patterns - a comprehensive analysis.',
     content: '',
@@ -47,6 +50,7 @@ const mockBlogPosts: BlogPost[] = [
   },
   {
     id: '3',
+    slug: 'multilingual-ambigram-techniques',
     title: 'Creative Techniques for Multi-Language Ambigrams',
     excerpt: 'In-depth analysis of character structure characteristics, mastering core techniques and aesthetic principles for creating ambigrams in different languages.',
     content: '',
@@ -60,6 +64,7 @@ const mockBlogPosts: BlogPost[] = [
   },
   {
     id: '4',
+    slug: 'font-choice-impact-on-ambigrams',
     title: 'How Font Choice Affects Ambigram Results',
     excerpt: 'How different font styles influence the visual effect of ambigrams, and how to choose the most suitable font for your design.',
     content: '',
@@ -73,6 +78,7 @@ const mockBlogPosts: BlogPost[] = [
   },
   {
     id: '5',
+    slug: 'ai-technology-in-ambigram-generation',
     title: 'AI Technology in Ambigram Generation',
     excerpt: 'Exploring how artificial intelligence is revolutionizing the ambigram creation process and future development prospects.',
     content: '',
@@ -86,6 +92,7 @@ const mockBlogPosts: BlogPost[] = [
   },
   {
     id: '6',
+    slug: 'ambigrams-in-brand-design',
     title: 'Ambigrams in Brand Design Applications',
     excerpt: 'How brands use ambigrams to create unique visual identity, enhancing brand memorability and influence.',
     content: '',
@@ -106,9 +113,9 @@ export default function BlogPage() {
   const [email, setEmail] = useState('');
   const router = useRouter();
 
-  // Handle article click
+  // Handle article click - 使用 SEO-friendly slug
   const handleArticleClick = (post: BlogPost) => {
-    router.push(`/blog/${post.id}`);
+    router.push(`/blog/${post.slug}`);
   };
 
   // Handle subscription

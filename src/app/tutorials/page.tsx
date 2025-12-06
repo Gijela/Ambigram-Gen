@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 interface Tutorial {
   id: string;
+  slug: string;  // ← SEO-friendly URL slug
   title: string;
   description: string;
   category: string;
@@ -18,6 +19,7 @@ interface Tutorial {
 const mockTutorials: Tutorial[] = [
   {
     id: '1',
+    slug: 'ambigram-basics-introduction',
     title: 'Ambigram Basics Introduction',
     description: 'Learn the basic concepts and creation methods of ambigrams from scratch',
     category: 'Basic Tutorials',
@@ -29,6 +31,7 @@ const mockTutorials: Tutorial[] = [
   },
   {
     id: '2',
+    slug: 'different-length-words-technique',
     title: 'Different Length Words Ambigram Techniques',
     description: 'Master advanced techniques for handling different length word combinations',
     category: 'Advanced Techniques',
@@ -40,6 +43,7 @@ const mockTutorials: Tutorial[] = [
   },
   {
     id: '3',
+    slug: 'tattoo-design-specialization',
     title: 'Tattoo Design Specialized Ambigrams',
     description: 'Professional methods for optimizing ambigrams for tattoo design',
     category: 'Tattoo Design',
@@ -51,6 +55,7 @@ const mockTutorials: Tutorial[] = [
   },
   {
     id: '4',
+    slug: 'multilingual-creation-guide',
     title: 'Multi-Language Ambigram Creation Guide',
     description: 'Special handling methods and techniques for multi-language character ambigrams',
     category: 'Language Tutorials',
@@ -62,6 +67,7 @@ const mockTutorials: Tutorial[] = [
   },
   {
     id: '5',
+    slug: 'font-selection-and-pairing',
     title: 'Font Selection and Pairing',
     description: 'How to choose the right fonts to enhance ambigram effects',
     category: 'Design Theory',
@@ -73,6 +79,7 @@ const mockTutorials: Tutorial[] = [
   },
   {
     id: '6',
+    slug: 'advanced-customization-techniques',
     title: 'Advanced Customization Techniques',
     description: 'Use advanced features to create unique ambigram works',
     category: 'Advanced Techniques',
@@ -109,8 +116,8 @@ export default function TutorialsPage() {
   });
 
   const handleQuickStart = () => {
-    // Jump to first tutorial
-    window.location.href = '/tutorials/1';
+    // Jump to first tutorial - 使用 SEO-friendly slug
+    window.location.href = '/tutorials/ambigram-basics-introduction';
   };
 
   return (
@@ -218,7 +225,7 @@ export default function TutorialsPage() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
               className="bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/20
                        hover:border-purple-500/50 transition-all duration-300 group cursor-pointer"
-              onClick={() => window.location.href = `/tutorials/${tutorial.id}`}
+              onClick={() => window.location.href = `/tutorials/${tutorial.slug}`}
             >
               {/* Thumbnail */}
               <div className="relative h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 
